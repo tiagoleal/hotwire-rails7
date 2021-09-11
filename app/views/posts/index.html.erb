@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Post</h1>
+
+<div id="posts">
+  <%= render @posts %>
+</div>
+
+<%= link_to "New post", new_post_path %>
+
+<div data-controller="hello"></div>
+<div data-controller="goodbye"></div>
+
+<div data-controller="utilities--md5">
+  <%= link_to "Hash this!", "#", "data-action": "utilities--md5#convert" %>
+</div>
