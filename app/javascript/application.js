@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "@hotwired/stimulus-importmap-autoloader"
 import "controllers"
-import "comps/vue_components"
+import "components"
