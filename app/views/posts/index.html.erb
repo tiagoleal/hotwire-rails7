@@ -14,3 +14,17 @@
 <div data-controller="utilities--md5">
   <%= link_to "Hash this!", "#", "data-action": "utilities--md5#convert" %>
 </div>
+
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+        {{  todo.text }}
+    </li>
+  </ol>
+</div>
+
+
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
