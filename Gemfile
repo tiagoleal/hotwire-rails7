@@ -9,6 +9,8 @@ gem 'rails', github: 'rails/rails', branch: 'main', ref: '3dd44a7d14af411d98eadd
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.1'
 # Manage modern JavaScript using ESM without transpiling or bundling
 gem 'importmap-rails', '>= 0.3.4'
 # Hotwire's SPA-like page accelerator. Read more: https://turbo.hotwired.dev
@@ -32,6 +34,8 @@ gem 'jbuilder', '~> 2.7'
 group :development, :test do
   # See https://github.com/ruby/debug for usage
   gem 'debug', '>= 1.0.0', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -40,7 +44,11 @@ group :development do
 
   # Display speed badge on every html page with SQL times and flame graphs.
   # Note: Interferes with etag cache testing. Can be configured to work on production: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  # gem "rack-mini-profiler", "~> 2.0"
+  gem "rack-mini-profiler", "~> 2.0"
+  # For memory profiling
+  gem 'memory_profiler'
+  # For call-stack profiling flamegraphs
+  gem 'stackprof'
   # Speed up rails commands in dev on slow machines / big apps. See: https://github.com/rails/spring
   # gem "spring"
 end

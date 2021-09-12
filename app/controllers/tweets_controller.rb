@@ -10,6 +10,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
 
     respond_to do |format|
+      # binding.pry
       if @tweet.save
         format.html do
           redirect_to tweets_path
