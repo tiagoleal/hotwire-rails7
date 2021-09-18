@@ -4,12 +4,24 @@
     <title>Src</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   </head>
-
   <body>
-    <%= yield %>
+    <div>
+      <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
+          <%= render "shared/sidebar" %>
+          <div class="flex-1 flex flex-col overflow-hidden">
+            <%= render "shared/navbar" %>
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+              <%= yield %>
+            </main>
+          </div>
+      </div>
+    </div>
   </body>
 </html>
