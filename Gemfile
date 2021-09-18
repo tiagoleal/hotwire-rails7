@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
+gem 'cssbundling-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails", "~> 2.1"
 
