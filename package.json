@@ -1,0 +1,10 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.3.4",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.15"
+  }
+}
