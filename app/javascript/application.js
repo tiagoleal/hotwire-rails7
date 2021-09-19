@@ -4,3 +4,6 @@ import "controllers"
 
 //tailwindcss
 import "stylesheets/application"
+
+//= require jquery
+//= require jquery_ujs
