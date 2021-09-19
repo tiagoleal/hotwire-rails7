@@ -1,84 +1,60 @@
-<div class="content-wrapper">
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Produtos</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <%= link_to new_product_path, remote: true, class: "btn btn-app bg-success float-right", 
-                                             data:{toggle:"modal", target:"#newProductModal"} do %>
-      <i class="far fa-plus-square"></i> Adicionar
-    <% end %>
-    <div class="table-responsive">
-      <table class="table">
-        <table id="productTable" class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Descrição</th>
-              <th scope="col">Preço</th>
-              <th scope="col">Status</th>
-              <th scope="col">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%  @products.each do |product| %>
-              <tr>
-                <th scope="row"><%= product.id %></th>
-                <td><%= product.description %></td>
-                <td><%= product.price %></td>
-                <td><%= product.status %></td>
-                <td>
-                  <%= link_to edit_product_path(product), remote: true, class:"btn bg-info btn-sm",
-                                                                      data:{toggle:"modal", target:"#editProductModal"} do %>
-                    <i class="fas fa-edit"></i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </table>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="newProductModal" tabindex="-1" aria-labelledby="newProductModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Produto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="newProductForm">
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atualizar Produto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
+<div class="flex flex-col mt-8">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div
+          class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+          <table class="min-w-full">
+              <thead>
+                  <tr>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Id</th>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Description</th>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Price</th>
+                      <th
+                          class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                          Status</th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                  </tr>
+              </thead>
+
+              <tbody class="bg-white">
+              <%  @products.each do |product| %>
+                  <tr>
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="flex items-center">
+                              <div class="ml-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900"><%= product.id %>
+                                  </div>
+                              </div>
+                          </div>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <div class="text-sm leading-5 text-gray-900"><%= product.description %></div>
+                      </td>
+
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          <%= product.price %></td>
+
+                      <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                          <span
+                              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"><%= product.status %></span>
+                      </td>
+                      <td
+                          class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      </td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
       </div>
-      <div id="editProductForm">
-      </div>
-    </div>
   </div>
 </div>
-
-<script>
-$( document ).on('turbolinks:load', function() {
-  $('#productTable').DataTable();
-});
-</script>
