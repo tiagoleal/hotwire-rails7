@@ -186,6 +186,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.5)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -262,6 +263,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails!
+  rexml (~> 3.2, >= 3.2.5)
   rspec-rails
   selenium-webdriver
   shoulda-matchers (~> 4.0)
