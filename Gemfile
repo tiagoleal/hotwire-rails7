@@ -24,6 +24,13 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'cssbundling-rails'
 
+
+gem "devise", github: "ghiculescu/devise", branch: "patch-2"
+
+
+
+
+
 # Use Sass to process CSS
 # gem "sassc-rails", "~> 2.1"
 
@@ -38,6 +45,10 @@ group :development, :test do
   gem 'debug', '>= 1.0.0', platforms: %i[mri mingw x64_mingw]
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do
