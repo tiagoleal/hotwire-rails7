@@ -1,29 +1,23 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: postgres
   user: postgres
-  
+
 development:
   <<: *default
-  database: tweets_backend_development
+  database: marketplaces_backend_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: tweets_backend_test
+  database: marketplaces_backend_test
 
 production:
   <<: *default
-  database: tweets_backend_production
-  username: tweets_backend
+  database: marketplaces_backend_production
+  username: marketplaces_backend
   password: <%= ENV['TWEETS_BACKEND_DATABASE_PASSWORD'] %>
