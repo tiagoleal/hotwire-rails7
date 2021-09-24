@@ -5,8 +5,6 @@ ruby '3.0.2'
 
 gem 'rails', github: 'rails/rails', branch: 'main', ref: '3dd44a7d14af411d98eaddb0921bfe3a0a45c144'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use postgresql as the database for Active Record
@@ -21,9 +19,6 @@ gem 'stimulus-rails', '>= 0.4.0'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
-
-gem 'cssbundling-rails'
-
 
 gem "devise", github: "ghiculescu/devise", branch: "patch-2"
 
