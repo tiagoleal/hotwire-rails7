@@ -1,23 +1,34 @@
+<%= form_with(model: product, id: dom_id(product)) do |f| %>
+  <% if tweet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+  ​
+      <ul>
+        <% tweet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form_with model: [:product, @product], local: true do |f| %>
-    <div class="form-row">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Descrição</label>
+      <%= f.text_field :description, type:"text", class:"form-control", placeholder:"Descrição" %>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Preço</label>
+        <%= f.number_field :price, value: @product.price ? '%.2f' % @product.price : nil, min: 0, step: 0.01, class:"form-control", placeholder:"Preço"  %>
+    </div>
+  </div>
+  <div class="form-row1">
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Descrição</label>
-        <%= f.text_field :description, type:"text", class:"form-control", placeholder:"Descrição" %>
+        <%= f.label :category %><br />
+        <%= f.collection_select :category_id,  Category.all, :id, :description , prompt: true%>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Preço</label>
-          <%= f.number_field :price, value: @product.price ? '%.2f' % @product.price : nil, min: 0, step: 0.01, class:"form-control", placeholder:"Preço"  %>
-      </div>
-    </div>
-    <div class="form-row1">
-        <div class="form-group col-md-6">
-          <%= f.label :category %><br />
-          <%= f.collection_select :category_id,  Category.all, :id, :description , prompt: true%>
-        </div>
-    </div>
-    <div class="offset-md-5">
-      <%= f.submit class:"btn btn-success" %>
-      <%= link_to "Cancelar", products_path, class:"btn btn-danger" %>
-    </div>
+  </div>
+  <div class="offset-md-5">
+    <%= f.submit class:"btn btn-success" %>
+    <%= link_to "Cancelar", products_path, class:"btn btn-danger" %>
+  </div>
 <% end %>

@@ -3,21 +3,29 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.order(id: :asc)
-  end
-
-  def new
     @product = Product.new
   end
 
   def edit; end
 
   def create
-    @product = Product.new
-    @product.attributes = products_params
-    if save_product!
-      redirect_to products_path	, notice: "#{@product.name} cadastrada com sucesso!"
-    else
-      alert_errors
+    @product = Product.new(products_params)
+
+    respond_to do |format|
+      if @product.save
+        format.html do
+          redirect_to products_path
+        end
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            @product, partial: 'products/form', locals: { product: @product }
+          )
+        end
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -30,11 +38,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show; end
+
   def destroy
-    if @product.destroy
-      redirect_to products_path	, notice: "#{@product.name} excluída com sucesso!"
-    else
-      alert_errors
+    @product.destroy
+    respond_to do |format|
+      format.html { redirect_to products_url }
+      format.json { head :no_content }
     end
   end
 
