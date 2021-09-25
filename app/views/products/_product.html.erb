@@ -1,0 +1,30 @@
+
+   
+        
+        <%= content_tag :tr, id: dom_id(product) do %>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900"><%= product.id %>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div class="text-sm leading-5 text-gray-900"><%= product.description %></div>
+            </td>
+
+            <td
+                class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                <%= product.price %></td>
+
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"><%= product.status %></span>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                <%= link_to :edit, edit_product_path(product), class:"text-indigo-600 hover:text-indigo-900" %>
+                <%= button_to :delete, product_path(product), method: :delete %>
+            </td>
+        
+    <% end %>

@@ -1,0 +1,4 @@
+<%= turbo_frame_tag dom_id(@product) do %>
+  <%= render 'form', product: @product %>
+  <%= link_to :cancel, product_path(@product) %>
+<% end %>

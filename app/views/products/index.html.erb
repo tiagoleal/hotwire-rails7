@@ -1,6 +1,7 @@
+<%= turbo_stream_from :products %>
 <div class="container mx-auto px-6 py-8">
     <h3 class="text-gray-700 text-3xl font-medium">Product</h3>
-
+    <div class="mt-8"></div>
     <div class="flex flex-col mt-8">
         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-4">
@@ -9,102 +10,48 @@
                         <p class="font-medium text-lg">Register Product</p>
                         <p>Please fill out all the fields.</p>
                     </div>
-
-                    <div class="lg:col-span-2">
-                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                            <div class="md:col-span-5">
-                                <label for="code">Code</label>
-                                <div class="md:col-span-2">
-                                    <select class="py-2 px-3 rounded-lg border-2 border-blue-300 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                                        <option>0001</option>
-                                        <option>0002</option>
-                                        <option>0003</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="md:col-span-4">
-                                <label for="full_name">Description</label>
-                                <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" value="" />
-                            </div>
-
-                            <div class="md:col-span-4">
-                                <label for="price">Price</label>
-                                <input type="number" name="price" id="price" min="0.00" max="10000.00" step="0.01" class="h-10 border mt-1 rounded px-4 w-full bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" value="" placeholder="" />
-                            </div>
-
-                            <div class="md:col-span-5 p-4 text-right">
-                                <div class="inline-flex items-end">
-                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <%= turbo_frame_tag :product_form do %>
+                        <%= render 'products/form', product: @product %>
+                    <% end %>
                 </div>
             </div>
         </div>
-
-        <div class="flex flex-col mt-8">
-            <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                <div
-                    class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Id</th>
-                                <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Description</th>
-                                <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Price</th>
-                                <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Status</th>
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                            </tr>
-                        </thead>
-
-                        <tbody class="bg-white">
-                        <%  @products.each do |product| %>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div class="text-sm leading-5 font-medium text-gray-900"><%= product.id %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900"><%= product.description %></div>
-                                </td>
-
-                                <td
-                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                    <%= product.price %></td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"><%= product.status %></span>
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    <div class="mt-8"></div>
-
     </div>
+
+    <div class="flex flex-col mt-8">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div
+                class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Id</th>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Description</th>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Price</th>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Status</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="bg-white" id="products" is="turbo-frame">
+                        <% @products.each do |product| %>
+                            <%= render product %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+    </div>
+    <div class="mt-8"></div>
 </div>
 
