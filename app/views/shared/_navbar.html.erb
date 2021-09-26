@@ -17,10 +17,8 @@
                     </path>
                 </svg>
             </button>
-
             <div x-show="notificationOpen" @click="notificationOpen = false"
                 class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
-
             <div x-show="notificationOpen"
                 class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl overflow-hidden z-10"
                 style="width: 20rem; display: none;">
@@ -64,16 +62,13 @@
                 </a>
             </div>
         </div>
-
         <div x-data="{ dropdownOpen: false }" class="relative">
             <button @click="dropdownOpen = ! dropdownOpen"
                 class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
                 <img class="h-full w-full object-cover" src='https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale'/>
             </button>
-
             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"
                 style="display: none;"></div>
-
             <div x-show="dropdownOpen"
                 class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
                 style="display: none;">

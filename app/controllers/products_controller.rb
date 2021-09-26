@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_products, only: %i[edit update destroy]
+  before_action :set_products, only: %i[show edit update destroy]
 
   def index
     @products = Product.all.order(id: :desc)
@@ -30,11 +30,19 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.attributes = products_params
-    if save_product!
-      redirect_to products_path	, notice: "#{@product.name} atualizada com sucesso!"
-    else
-      alert_errors
+    respond_to do |format|
+      if @product.update(products_params)
+        format.html { redirect_to @product }
+        format.json { render :show, status: :ok, location: @product }
+      else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            @product, partial: 'products/form', locals: { product: @product }
+          )
+        end
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -63,7 +71,7 @@ class ProductsController < ApplicationController
   end
 
   def products_params
-    params.require(:product).permit(:description,
+    params.require(:product).permit(:code, :description,
       :price, :category_id, :status)
   end
 end

@@ -42,9 +42,10 @@ ActiveRecord::Schema.define(version: 2021_09_19_162930) do
 
   create_table "products", force: :cascade do |t|
     t.bigint "category_id", null: false
+    t.integer "code"
     t.string "description"
     t.decimal "price"
-    t.integer "status"
+    t.integer "status", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
