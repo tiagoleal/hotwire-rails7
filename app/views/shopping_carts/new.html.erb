@@ -1,4 +1,4 @@
-<%= turbo_stream_from :shoppingCartList %>
+<!-- component -->
 <div class=" flex  flex-col  md:flex-row justify-center  flex-wrap gap-6 mt-10">
     <div class="w-3/5">
         <div class="bg-white shadow-lg mx-auto border-b-4 border-indigo-800 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer" >
@@ -19,7 +19,6 @@
                             </path>
                         </svg>
                     </span>
-
                     <%= form.text_field 'search_term', 
                         placeholder: 'Scan product items...', 
                         class:"w-2/4 ml-2 pl-8 pr-4 h-10 border rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
@@ -33,6 +32,7 @@
             <% end %>
         </div>
     </div>
+
     <div class="w-3/5">
         <div class="bg-white shadow-lg mx-auto border-b-4 border-indigo-800 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer" >
             <div class="bg-indigo-800  flex h-20 p-4 items-center">
@@ -42,27 +42,32 @@
                 <p class="ml-4 text-white uppercase">Market List</p>
             </div>
 
+            <table class="min-w-max w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Code</th>
+                        <th class="py-6 px-6 text-left">Description</th>
+                        <th class="py-2 px-6 text-left">Price</th>
+                        <th class="py-3 px-6 text-center">Actions</th>
+                    </tr>
+                </thead>
 
 
-            <div class="min-w-max w-full table-auto">
-                <div>
-                    <div class="flex bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <div class="w-1/2 py-3 px-2 text-left">Id</div>
-                        <div class="w-1/2 py-3 px-6 text-left">Code</div>
-                        <div class="w-1/2 py-3 px-6 text-left">Description</div>
-                        <div class="w-1/2 py-3 px-6 text-left">Price</div>
-                        <div class="w-1/2 py-3 px-6 text-left">Qtde</div>
-                        <div class="w-1/2 py-3 px-6 text-left">Actions</div>
-                    </div>
-                </div>
-             
-                <div class="bg-white">
-                    <%= turbo_frame_tag :shoppingCartList do %>
-                        <%= render 'form', orders: @orders %>
-                    <% end %>
-                </div>
-            </div>
+                <tbody class="bg-white" id="order" is="turbo-frame">
 
+
+
+                    <%= render 'form', products: @products, order: @order %>
+
+
+
+
+                </tbody>
+            </table>
+
+            
         </div>
     </div>
 </div>
+
+

@@ -1,43 +1,50 @@
-<div class="lg:col-span-2">
-  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+<div class="lg:col-span-2" style="border: 1px solid red;">
+
     <%= form_with(model: product, id: dom_id(product)) do |form| %>
       <% if product.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(product.errors.count, "error") %> prohibited this tweet from being saved:</h2>
-          <ul>
-            <% product.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
+
+        <div role="alert">
+          <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+            <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+          </div>
+          <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+            <ul>
+              <% product.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       <% end %>
 
-      <div class="md:col-span-4">
-        <%= form.label :code %>
-        <%= form.text_field :code, type:"text", class:"h-10 border mt-1 rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent", placeholder:"Code" %>
-      </div>
+      
+    <div class="grid grid-cols-6 gap-6">
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :code, class: "w-full" %>
+          <%= form.text_field :code, type:"text", class:"h-10 border mt-1 rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent", placeholder:"Code" %>
+        </div>
 
-      <div class="md:col-span-4">
-        <%= form.label :description %>
-        <%= form.text_field :description, type:"text", class:"h-10 border mt-1 rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent", placeholder:"Description" %>
-      </div>
+        <div class="md:col-span-4">
+          <%= form.label :description %>
+          <%= form.text_field :description, type:"text", class:"h-10 border mt-1 rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent", placeholder:"Description" %>
+        </div>
 
-      <div class="md:col-span-4">
-        <%= form.label :price %>
-        <%= form.number_field :price, class:"h-10 border mt-1 rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" %>    
-      </div>
+        <div class="md:col-span-3">
+          <%= form.label :price %>
+          <%= form.number_field :price, class:"h-10 border mt-1 rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" %>    
+        </div>
 
-      <div class="md:col-span-5">
-        <%= form.label :category %>
-        <div class="md:col-span-2">
-          <%= form.collection_select :category_id,  Category.all, :id, :description, {prompt: true}, {class: "py-2 px-3 rounded-lg border-2 border-blue-300 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" } %>
+        <div class="md:col-span-5">
+          <%= form.label :category %>
+          <div class="md:col-span-2">
+            <%= form.collection_select :category_id,  Category.all, :id, :description, {prompt: true}, {class: "py-2 px-3 rounded-lg border-2 border-blue-300 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" } %>
+          </div>
+        </div>
+        
+        <div class="md:col-span-4 py-2 px-4 w-8" style="width: 400px">
+          <%= form.submit "Save", class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded" %>
+          <%= link_to "Cancel", products_path, type:"button", class:"px-5 py-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-white bg-red-500 hover:bg-red-600 active:bg-red-700 focus:ring-red-300" %>
         </div>
       </div>
-      
-      <div class="md:col-span-4 py-2 px-4 w-8" style="width: 400px">
-        <%= form.submit "Save", class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded" %>
-        <%= link_to "Cancel", products_path, type:"button", class:"px-5 py-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-white bg-red-500 hover:bg-red-600 active:bg-red-700 focus:ring-red-300" %>
-      </div>
     <% end %>
-  </div>
 </div>

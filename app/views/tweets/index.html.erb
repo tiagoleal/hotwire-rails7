@@ -7,3 +7,6 @@
 <%= turbo_frame_tag :tweets do %>
   <%= render @tweets %>
 <% end %>
+
+
+<%= render 'products/list', products: @products %>
