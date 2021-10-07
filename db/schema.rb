@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_162930) do
     t.bigint "product_id", null: false
     t.bigint "order_id", null: false
     t.integer "quantity"
+    t.decimal "unit_price"
     t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,6 +35,8 @@ ActiveRecord::Schema.define(version: 2021_09_19_162930) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.integer "status", default: 1
+    t.decimal "subtotal"
     t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_162930) do
 
   create_table "products", force: :cascade do |t|
     t.bigint "category_id", null: false
-    t.integer "code"
+    t.string "code"
     t.string "description"
     t.decimal "price"
     t.integer "status", default: 1
