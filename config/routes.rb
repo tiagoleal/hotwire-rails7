@@ -5,18 +5,12 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  resources :tweets
   resources :products
   resources :shopping_carts, only: [:index, :show, :new, :edit] do
-    
     delete 'product/:product_id', to: 'shopping_carts#destroy', as: 'destroy'
-    collection do 
+    collection do
       post :search
     end
   end
-  
-  
-
-
   get '/', to: 'dashboards#index'
 end
