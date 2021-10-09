@@ -1,28 +1,17 @@
-<br />
-
-<div class="w-full max-w-xs">
+<div class="flex flex-col items-center justify-center py-5 bg-gray-200 text-gray-700">
   <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-            Email
-          </label>
-          <input name="user[email]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
-        </div>
-        <div class="mb-6">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-            Password
-          </label>
-          <input name="user[password]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
-        </div>
-        <div class="flex items-center justify-between">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-            <% end %>
-          </a>
-        </div>
-      <% end %>
-    </div>
+    <h1 class="flex flex-col items-center justify-center font-black">Sign In</h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:"flex flex-col bg-white rounded shadow-lg p-12 mt-12") do |f| %>
+      <label class="font-semibold text-xs" for="username">Email</label>
+      <input name="user[email]" class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" id="username" type="text" placeholder="Username">
+      <label class="font-semibold text-xs mt-3" for="password">Password</label>
+      <input name="user[password]" class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"type="password" id="password" placeholder="******************">
+      <button type="submit" class="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Login</button>
+      <div class="flex mt-6 justify-center">
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "Sign up", new_registration_path(resource_name), class:"text-blue-400 hover:text-blue-500"  %><br />
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
