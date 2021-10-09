@@ -1,47 +1,33 @@
 class ProductsController < ApplicationController
   before_action :set_products, only: %i[show edit update destroy]
+  before_action :new_product, only: %i[index create]
 
   def index
     @products = Product.all.order(id: :desc)
-    @product = Product.new
   end
 
   def edit; end
 
   def create
-    @product = Product.new(products_params)
-
+    attributes_params
     respond_to do |format|
-      if @product.save
-        format.html do
-          redirect_to products_path
-        end
-        format.json { render :show, status: :created, location: @product }
+      if save_product
+        redirect_product(format)
       else
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            @product, partial: 'products/form', locals: { product: @product }
-          )
-        end
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format_turbo(format)
+        product_errors(format)
       end
     end
   end
 
   def update
+    attributes_params
     respond_to do |format|
-      if @product.update(products_params)
-        format.html { redirect_to @product }
-        format.json { render :show, status: :ok, location: @product }
+      if save_product
+        redirect_product(format)
       else
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            @product, partial: 'products/form', locals: { product: @product }
-          )
-        end
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format_turbo(format)
+        product_errors(format)
       end
     end
   end
@@ -51,15 +37,19 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url }
+      redirect_product(format)
       format.json { head :no_content }
     end
   end
 
   private
 
-  def save_product!
-    @product.save!
+  def save_product
+    @product.save
+  end
+
+  def new_product
+    @product = Product.new
   end
 
   def alert_errors
@@ -68,6 +58,31 @@ class ProductsController < ApplicationController
 
   def set_products
     @product = Product.find(params[:id])
+  end
+
+  def redirect_product(format)
+    format.html do
+      redirect_to products_path
+    end
+    format.json { render :show, status: :ok, location: @product }
+  end
+
+  def format_turbo(format)
+    format.turbo_stream do
+      render turbo_stream: turbo_stream.replace(
+        @product, partial: 'products/form', locals: { product: @product }
+      )
+    end
+    format.html { render :new, status: :unprocessable_entity }
+  end
+
+  def product_errors(format)
+    format.html { render :edit, status: :unprocessable_entity }
+    format.json { render json: @product.errors, status: :unprocessable_entity }
+  end
+
+  def attributes_params
+    @product.attributes = products_params
   end
 
   def products_params
