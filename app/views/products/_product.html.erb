@@ -4,7 +4,9 @@
             <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <div class="flex">
                     <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Id</div>
+                    <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Code</div>
                     <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</div>
+                    <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Category</div>
                     <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Price</div>
                     <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</div>
                     <div class="w-1/2 px-6 py-4 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</div>
@@ -12,15 +14,29 @@
                 <div class="flex bg-white">
                     <div class="w-1/2 px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div class="flex items-center">
-                            <div class="ml-4">
+                            <div class="ml-2">
                                 <div class="text-sm leading-5 font-medium text-gray-900"><%= product.id %></div>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="w-1/2 px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div class="flex items-center">
+                            <div class="ml-2">
+                                <div class="text-sm leading-5 font-medium text-gray-900"><%= product.code %></div>
                             </div>
                         </div>
                     </div>
                     <div class="w-1/2 px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div class="flex items-center">
-                            <div class="ml-4">
+                            <div class="ml-2">
                                 <div class="text-sm leading-5 text-gray-900"><%= product.description %></div>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="w-1/2 px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div class="flex items-center">
+                            <div class="ml-2">
+                                <div class="text-sm leading-5 text-gray-900"><%= product.category.description %></div>
                             </div>
                         </div>
                     </div>
@@ -32,10 +48,10 @@
                     </div>
                     <div class="w-1/2 px-6 py-4 whitespace-no-wrap text-left border-b border-gray-200 text-sm leading-5 font-medium">
                         <div class="flex items-center">
-                            <div class="ml-4">
+                            <div class="ml-2">
                                 <%= link_to :edit, edit_product_path(product), class:"bg-blue-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
                             </div>
-                            <div class="ml-4">
+                            <div class="ml-2">
                                 <%= button_to :delete, product_path(product), method: :delete, class:"bg-red-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"  %>
                             </div>
                         </div>
