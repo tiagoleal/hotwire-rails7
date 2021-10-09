@@ -35,32 +35,33 @@ class ShoppingCartsController < ApplicationController
     if params[:search_term].present?
       @product = Product.find_by(code: params[:search_term])
 
-      order_already_exist = Order.find_by(status: 'waiting')
-      order_obj = order_already_exist
-      unless order_already_exist
-        @order = Order.create(
-          status: 'waiting',
-          user_id: current_user.id,
-        )
+      if @product.present?
+        order_already_exist = Order.find_by(status: 'waiting')
+        order_obj = order_already_exist
+        unless order_already_exist
+          @order = Order.create(
+            status: 'waiting',
+            user_id: current_user.id,
+          )
 
-        OrderProduct.create(
-          order_id: @order.id,
-          product_id: @product.id,
-          unit_price: @product.price,
-          quantity: 1
-        )  
-        order_obj = @order
-      end
-
-      
-      product_already_exist = OrderProduct.find_by(order_id: order_obj.id, product_id: @product.id)
-      unless product_already_exist
-        OrderProduct.create(
-          order_id: order_obj.id,
-          product_id: @product.id,
-          unit_price: @product.price,
-          quantity: 1
-        )  
+          OrderProduct.create(
+            order_id: @order.id,
+            product_id: @product.id,
+            unit_price: @product.price,
+            quantity: 1
+          )  
+          order_obj = @order
+        end
+        
+        product_already_exist = OrderProduct.find_by(order_id: order_obj.id, product_id: @product.id)
+        unless product_already_exist
+          OrderProduct.create(
+            order_id: order_obj.id,
+            product_id: @product.id,
+            unit_price: @product.price,
+            quantity: 1
+          )  
+        end
       end
     end
 
