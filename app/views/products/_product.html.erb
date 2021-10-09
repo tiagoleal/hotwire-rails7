@@ -33,15 +33,15 @@
                     <div class="w-1/2 px-6 py-4 whitespace-no-wrap text-left border-b border-gray-200 text-sm leading-5 font-medium">
                         <div class="flex items-center">
                             <div class="ml-4">
-                                <%= link_to :edit, edit_product_path(product), class:"text-indigo-600 hover:text-indigo-900" %>
+                                <%= link_to :edit, edit_product_path(product), class:"bg-blue-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
                             </div>
                             <div class="ml-4">
-                                <%= button_to :delete, product_path(product), method: :delete %>
+                                <%= button_to :delete, product_path(product), method: :delete, class:"bg-red-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"  %>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
 <% end %>

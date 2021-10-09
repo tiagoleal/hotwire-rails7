@@ -8,7 +8,6 @@
                 </svg>
                 <p class="ml-4 text-white uppercase">Product List</p>
             </div>
-      
             <%= form_with(url: search_shopping_carts_path, data: { controller: 'form-submission', form_submission_target: "form" })do | form | %>
                 <div class="relative mx-4 lg:mx-0 py-3">
                     <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -19,14 +18,14 @@
                             </path>
                         </svg>
                     </span>
-                    <%= form.text_field 'search_term', 
-                        placeholder: 'Scan product items...', 
+                    <%= form.text_field 'search_term',
+                        placeholder: 'Scan product items...',
                         class:"w-2/4 ml-2 pl-8 pr-4 h-10 border rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
                     %>
 
-                    <%= form.submit 'Add', 
+                    <%= form.submit 'Add',
                         class:"border border-blue-800 text-blue-800 rounded-md px-4 py-2 m-2 transition duration-800 ease select-none hover:text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline",
-                        data: { action: "input->form-submission#search" } 
+                        data: { action: "input->form-submission#search" }
                     %>
                 </div>
             <% end %>
@@ -51,21 +50,10 @@
                         <th class="py-3 px-6 text-center">Actions</th>
                     </tr>
                 </thead>
-
-
                 <tbody class="bg-white" id="order" is="turbo-frame">
-
-
-
                     <%= render 'form', products: @products, order: @order %>
-
-
-
-
                 </tbody>
             </table>
-
-            
         </div>
     </div>
 </div>
