@@ -32,7 +32,7 @@
 
 ## Market List
 Development of a market list using Ruby on Rails 7, Ruby 3, hotwire and Stimulus Js
-Manage your produts
+- Manage your products
 
 ## Stack the Project
 
