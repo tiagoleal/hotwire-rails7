@@ -25,5 +25,5 @@ Order.create(user_id: 2, status: 'waiting')
 
 puts "OrderProduct...."
 OrderProduct.create(order_id: 1, product_id: 1, unit_price: 4.00, quantity: 1)
-OrderProduct.create(order_id: 2, product_id: 2, unit_price: 6.00, quantity: 1)
-OrderProduct.create(order_id: 3, product_id: 2, unit_price: 2.99, quantity: 1)
+OrderProduct.create(order_id: 2, product_id: 2, unit_price: 2.99, quantity: 1)
+OrderProduct.create(order_id: 3, product_id: 3, unit_price: 3.50, quantity: 1)
