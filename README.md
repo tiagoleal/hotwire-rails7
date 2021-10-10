@@ -28,7 +28,7 @@
 <a href="#" target="_blank">Acessar Link</a>
 
 ## Screenshot
-![](https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/ruby.png)
+![](https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/hotwire.gif)
 
 ## Market List
 Development of a market list using Ruby on Rails 7, Ruby 3, hotwire and Stimulus Js
