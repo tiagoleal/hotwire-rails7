@@ -8,29 +8,7 @@
                 </svg>
                 <p class="ml-4 text-white uppercase">Product List</p>
             </div>
-      
-            <%= form_with(url: search_shopping_carts_path, data: { controller: 'form-submission', form_submission_target: "form" })do | form | %>
-                <div class="relative mx-4 lg:mx-0 py-3">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                        <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                        </svg>
-                    </span>
-
-                    <%= form.text_field 'search_term', 
-                        placeholder: 'Scan product items...', 
-                        class:"w-2/4 ml-2 pl-8 pr-4 h-10 border rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
-                    %>
-
-                    <%= form.submit 'Add', 
-                        class:"border border-blue-800 text-blue-800 rounded-md px-4 py-2 m-2 transition duration-800 ease select-none hover:text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline",
-                        data: { action: "input->form-submission#search" } 
-                    %>
-                </div>
-            <% end %>
+            <%= render 'form' %>
         </div>
     </div>
     <div class="w-3/5">
@@ -41,9 +19,6 @@
                 </svg>
                 <p class="ml-4 text-white uppercase">Market List</p>
             </div>
-
-
-
             <div class="min-w-max w-full table-auto">
                 <div>
                     <div class="flex bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -56,11 +31,10 @@
                     </div>
                 </div>
              
-                <div class="bg-white">
-                    <%= turbo_frame_tag :shoppingCartList do %>
-                        <%= render 'form', orders: @orders %>
-                    <% end %>
-                </div>
+                <%= turbo_frame_tag :shoppingCartList do %>
+                    <%= render 'order', orders: @orders %>
+                <% end %>
+                
             </div>
 
         </div>

@@ -1,0 +1,41 @@
+asdsad
+<%= turbo_frame_tag dom_id(@orders) do %>
+    <% if @orders.order_products.empty? %>
+        <div align="center"><em>No matching products</em></div>
+    <% end %>
+    <% @orders.order_products.map do |order| %>
+        <div class="flex border-b border-gray-200 hover:bg-gray-100">
+            <div class="w-1/2 px-2 py-3 whitespace-no-wrap border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900">
+                            <%= order.product.id %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
+                <div class="text-sm leading-5 text-gray-900"><%= order.product.code %>223423</div>
+            </div>
+
+            <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
+                <div class="text-sm leading-5 text-gray-900"><%= order.product.description %></div>
+            </div>
+
+            <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                <%=  order.product.price %>
+            </div>
+
+            <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
+                <%=  order.quantity %>
+            </div>
+
+            <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
+                <div class="text-sm leading-5 text-gray-900">
+                    <%= button_to :delete, shopping_cart_destroy_path(shopping_cart_id: order.order_id, product_id: order.product.id), method: :delete, class:"bg-red-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150", data: {confirm: 'Are you sure?'} %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% end %>
