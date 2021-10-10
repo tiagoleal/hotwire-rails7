@@ -1,60 +1,22 @@
-<%= turbo_frame_tag dom_id(@orders) do %>
+<%= form_with(url: search_shopping_carts_path, data: { controller: 'form-submission', form_submission_target: "form" })do | form | %>
+    <div class="relative mx-4 lg:mx-0 py-3">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+            <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                </path>
+            </svg>
+        </span>
 
-   <% if @orders %>
+        <%= form.text_field 'search_term', 
+            placeholder: 'Scan product items...', 
+            class:"w-2/4 ml-2 pl-8 pr-4 h-10 border rounded px-4 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
+        %>
 
-        <% if @orders.order_products.empty? %>
-            <div>
-                <div><center><em>No matching products</em></center></div>
-            </div>
-        <% end %>
-        <% @orders.order_products.map do |order| %>
-            <div class="flex border-b border-gray-200 hover:bg-gray-100">
-                <div class="w-1/2 px-2 py-3 whitespace-no-wrap border-b border-gray-200">
-                    <div class="flex items-center">
-                        <div class="ml-4">
-                            <div class="text-sm leading-5 font-medium text-gray-900">
-                                <%= order.product.id %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-900"><%= order.product.code %></div>
-                </div>
-
-                <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-900"><%= order.product.description %></div>
-                </div>
-
-                <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                    <%=  order.product.price %>
-                </div>
-
-                <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
-                    <%=  order.quantity %>
-                </div>
-
-                <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-900">
-                        <%= button_to :delete, shopping_cart_destroy_path(shopping_cart_id: order.order_id, product_id: order.product.id), method: :delete, class:"bg-red-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150", data: {confirm: 'Are you sure?'} %>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-        <div class="flex border-b border-gray-200 hover:bg-gray-100">
-            <div class="w-1/2 py-3 px-6 text-left whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="font-sans text-2xl font-bold pl-3 py-3">
-                        TOTAL R$ <%= @orders.total %>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <% else %>
-         <div>
-            <div><center><em>No matching products</em></center></div>
-        </div>
-    <% end %>
+        <%= form.submit 'Add', 
+            class:"border border-blue-800 text-blue-800 rounded-md px-4 py-2 m-2 transition duration-800 ease select-none hover:text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline",
+            data: { action: "input->form-submission#search" } 
+        %>
+    </div>
 <% end %>
