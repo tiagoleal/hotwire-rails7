@@ -1,4 +1,4 @@
-<% if @orders %>    
+<% if @orders %>
     <%= turbo_frame_tag dom_id(orders) do %>
         <% if @orders.order_products.empty? %>
             <div align="center"><em>No matching products</em></div>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                    <%=  order.product.price %>
+                     <%= sprintf('%.2f', order.product.price) %>
                 </div>
 
                 <div class="w-1/2 px-6 py-3 whitespace-no-wrap border-b border-gray-200">
