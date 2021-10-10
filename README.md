@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/tiagoleal/quickchat">
+  <a href="https://github.com/tiagoleal/hotwire-rails7">
     <img alt="Current Version" src="https://img.shields.io/badge/version-1.0.0 -blue.svg">
   </a>
   <a href="https://ruby-doc.org/core-2.7.2/">
@@ -14,16 +14,20 @@
   <a href="https://guides.rubyonrails.org/5_2_release_notes.html">
     <img alt="" src="https://img.shields.io/badge/Rails-~> 7.0.0-blue.svg" target="_blank">
   </a>
-  
 </p>
 
 Hotwire is an alternative approach to building modern web applications without using much JavaScript by sending HTML instead of JSON over the wire through of WebSocket (which consists of ActionCable, Channels and Streaming Data). [link hotwire](https://hotwired.dev?target=_blank)
 
+## Web
+
+<a href="https://market-list-hotwire.herokuapp.com" target="_blank">Acessar projeto</a>
 
 ## Screenshot
+![](https://github.com/tiagoleal/hotwire-rails7/tree/master/app/assets/images/hotwire.gif)
 
-
-
+# Market List
+Development of a market list using Ruby on Rails 7, Ruby 3, hotwire and Stimulus Js
+Manage your produts
 ## Stack the Project (TODO: available gems)
 
 - **Ruby On Rails**
@@ -35,18 +39,6 @@ Hotwire is an alternative approach to building modern web applications without u
 - **StimulusJS**
 - **WebSocket**
 - **Action Cable**
-- **Coverage**
-- **RubyCritic**
-- **Attractor**
-
-## Context App
-
-........................
-
-## Benchmark Hotwire x ReactJS
-
-........................
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -81,7 +73,6 @@ $ docker --version
 #Must be have the docker version: Docker version 18.06.0-ce
 $ docker-compose --version
 #Must be have the docker-compose version: docker-compose version 1.22.0
-```
 
 ## First steps
 
@@ -108,27 +99,39 @@ To run the tests, you must run the docker container through the command:
 docker-compose run --rm app bundle exec rspec
 ```
 
-## Running the Ruby Critic.
-
-To Verify the quality report of your Ruby code, you must run the docker container through the command:
-
 ```
-docker-compose run --rm app bundle exec rubycritic 
-```
-## Running the Attractor.
+## Tests
 
-To Verify a code complexity metrics visualization and exploration tool, you must run the docker container through the command:
+For to do the tests it is necessary in docker container running:
 
-```
-docker-compose run --rm app bundle exec attractor report 
-```
+Test using Rspec:
 
+**Model**
+
+Category
+docker-compose run --rm website bundle exec rspec spec/models/category_spec.rb
+
+
+Product
+docker-compose run --rm website bundle exec rspec spec/models/product_spec.rb
+
+Order
+docker-compose run --rm website bundle exec rspec spec/models/order_spec.rb
+
+
+OrderProduct
+docker-compose run --rm website bundle exec rspec spec/models/order_product_spec.rb
+
+User
+docker-compose run --rm website bundle exec rspec spec/models/user_spec.rb
 ## Authors
 
 Project created by the following developers
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/5727529?s=460&v=4" width="100px;"/><br /><sub><b>Tiago Leal</b></sub>](https://github.com/tiagoleal)<br /> | 
-[<img src="https://avatars.githubusercontent.com/u/7293590?v=4" width="100px;"/><br /><sub><b>Jefferson Maran</b></sub>](https://github.com/jeffmaran)<br /> | [<img src="https://avatars.githubusercontent.com/u/1753070?v=4" width="100px;"/><br /><sub><b>Thiago Cardoso</b></sub>](https://github.com/Thiago-Cardoso)<br /> | 
+| [<img src="https://avatars1.githubusercontent.com/u/5727529?s=460&v=4" width="100px;"/><br /><sub><b>Tiago Leal</b></sub>](https://github.com/tiagoleal)<br /> |
+[<img src="https://avatars.githubusercontent.com/u/7293590?v=4" width="100px;"/><br /><sub><b>Jefferson Maran</b></sub>](https://github.com/jeffmaran)<br /> | [<img src="https://avatars.githubusercontent.com/u/1753070?v=4" width="100px;"/><br /><sub><b>Thiago Cardoso</b></sub>](https://github.com/Thiago-Cardoso)<br /> |
 | :---: | :---: | :---: |
+## License
 
+This project is licensed under a Apache license 2.0 - see file [LICENSE](LICENSE) for more details
