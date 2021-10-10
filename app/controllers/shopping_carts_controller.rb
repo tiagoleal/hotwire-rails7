@@ -1,5 +1,5 @@
 class ShoppingCartsController < ApplicationController
-  before_action :set_orders, only: %i[show edit update]
+  before_action :set_orders, only: %i[show update]
   before_action :set_order_products, only: %i[destroy]
   before_action :find_by_product, only: %i[search]
 
@@ -11,15 +11,21 @@ class ShoppingCartsController < ApplicationController
   def search
     if params[:search_term].present?
       if @product.present?
-        order_obj = order_status
-        unless order_obj
+        # order_obj = order_status
+
+        binding.pry
+        # order_status
+
+
+
+        unless order_status
           save_order
-          save_order_product(order_obj)
-          order_obj = @order
+          # save_order_product(order)
+          # order_obj = order
         end
 
-        unless product_already_exist(order_obj)
-          save_order_product(order_obj)
+        unless product_already_exist?
+          save_order_product
         end
       end
     end
@@ -36,6 +42,20 @@ class ShoppingCartsController < ApplicationController
   def show
   end
 
+  def update
+    respond_to do |format|
+      if @order.update(status: 'confirm')
+        format.html do
+          redirect_to shopping_carts_path
+        end
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end  
+  end
+
+ 
   def destroy
     @orderProducts.destroy
     respond_to do |format|
@@ -47,8 +67,10 @@ class ShoppingCartsController < ApplicationController
   private
 
   def set_order_products
-    @orderProducts = OrderProduct.find_by(order_id: params[:shopping_cart_id],
-    product_id: params[:product_id])
+    @orderProducts = OrderProduct.find_by(
+      order_id: params[:shopping_cart_id],
+      product_id: params[:product_id]
+    )
   end
 
   def set_orders
@@ -63,9 +85,9 @@ class ShoppingCartsController < ApplicationController
     @product = Product.find_by(code: params[:search_term])
   end
 
-  def save_order_product(order_obj)
+  def save_order_product
     OrderProduct.create(
-      order_id: order_obj.id,
+      order_id: @orders.id,
       product_id: @product.id,
       unit_price: @product.price,
       quantity: 1
@@ -73,23 +95,34 @@ class ShoppingCartsController < ApplicationController
   end
 
   def save_order
-    @order = Order.create(
-      status: 'waiting',
-      user_id: current_user.id,
+    # @orders = Order.create_order
+
+    @orders = Order.new(
+      status: :waiting,
+      user_id: current_user.id
     )
+    @orders.save
+    # @orders = Order.find_by(status: 'waiting')
+
+    # @order = Order.new(
+    #   status: 'waiting',
+    #   user_id: current_user.id
+    # )
+    # @order.save
+    # @orders = Order.find_by(status: 'waiting')
   end
 
   def total
     order_status
-    @orders.total = @orders.order_products.collect { |order_prod| order_prod.valid? ? order_prod.unit_price * order_prod.quantity : 0}.sum
+    @orders.total = @orders.order_products.collect { |order_prod| order_prod.valid? ? order_prod.unit_price * order_prod.quantity : 0}.sum unless @orders.nil? 
   end
 
   def order_status
-    @orders = Order.find_by(status: 'waiting')
+    @orders ||= Order.find_by(status: 'waiting')
   end
 
-  def product_already_exist(order_obj)
-    OrderProduct.find_by(order_id: order_obj.id, product_id: @product.id)
+  def product_already_exist?
+    OrderProduct.find_by(order_id: @orders.id, product_id: @product.id)
   end
 
   def orders_params

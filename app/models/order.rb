@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  after_create_commit { broadcast_prepend_to :shoppingCartList }
+  # after_create_commit { broadcast_prepend_to :shoppingCartList }
   after_update_commit { broadcast_replace_to :shoppingCartList }
   after_destroy_commit { broadcast_remove_to :shoppingCartList }
 
@@ -9,14 +9,25 @@ class Order < ApplicationRecord
   has_many :order_products
   accepts_nested_attributes_for :order_products, allow_destroy: true, reject_if: :all_blank
 
-  validates :user_id, uniqueness: { scope: :user, messages: "order has active"}
-  validates :status, presence: true
+  # validates :user_id, uniqueness: { scope: :user, messages: "order has active"}
+  # validates :status, presence: true
+  
+  
+  # before_new :create_order
   before_save :set_total
   before_update :set_total
 
   enum status: {'waiting': 1, 'confirm': 2}
 
   private 
+
+  def create_order
+    Order.create(
+      # status: 'waiting',
+      user_id: current_user.id
+    )
+    # order.save
+  end
 
   def subtotal
     order_products.collect { |order_prod| order_prod.valid? ? order_prod.unit_price * order_prod.quantity : 0}.sum

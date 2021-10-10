@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :products
-  resources :shopping_carts, only: [:index, :show, :new, :edit] do
+  resources :shopping_carts, only: [:index, :show, :new, :update] do
     delete 'product/:product_id', to: 'shopping_carts#destroy', as: 'destroy'
     collection do
       post :search
