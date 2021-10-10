@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    post 'users/' => 'users#create', :as => 'user'
   end
 
   resources :products
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
       post :search
     end
   end
-  get '/', to: 'dashboards#index'
+  get '/', to: 'products#index'
 end
