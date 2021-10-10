@@ -22,17 +22,21 @@ Hotwire is an alternative approach to building modern web applications without u
 
 <a href="https://market-list-hotwire.herokuapp.com" target="_blank">Acessar projeto</a>
 
+## Modelagem BD
+
+<a href="#" target="_blank">Acessar Link</a>
+
 ## Screenshot
 ![](https://github.com/tiagoleal/hotwire-rails7/tree/master/app/assets/images/hotwire.gif)
 
-# Market List
+## Market List
 Development of a market list using Ruby on Rails 7, Ruby 3, hotwire and Stimulus Js
 Manage your produts
 ## Stack the Project (TODO: available gems)
 
 - **Ruby On Rails**
 - **Redis**
-- **SQLite**
+- **PostgreSql**
 - **Rspec(TDD)**
 - **Hotwire para Rails**
 - **TurboRails**
