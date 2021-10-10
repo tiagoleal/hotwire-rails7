@@ -125,8 +125,6 @@ docker-compose run --rm website bundle exec rails db:migrate if necessary popula
 OBS. If the server does not create the pid file. due to gitignore
 it is necessary to create manually.
 mkdir tmp/pids
-Error bundle assets or webpacker run
-docker-compose run --rm app bundle exec rails webpacker:install
 
 **Model**
 
