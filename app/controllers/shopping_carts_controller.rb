@@ -74,7 +74,7 @@ class ShoppingCartsController < ApplicationController
   end
 
   def order_list
-    @orders ||= Order.find_by(status: 'waiting')
+    @orders ||= Order.find_by(user_id: current_user.id, status: 'waiting')
     @orders.total = @orders.order_products.collect { |order_prod| order_prod.valid? ? order_prod.unit_price * order_prod.quantity : 0}.sum unless @orders.nil? 
   end
 
