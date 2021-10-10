@@ -3,6 +3,7 @@
    <img alt="Hotwire rails" src="https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/hotwire.png?raw=true" width="300">
   </a>
 </p>
+<p align="center">Market List</p>
 
 <p align="center">
   <a href="https://github.com/tiagoleal/hotwire-rails7">
@@ -16,7 +17,7 @@
   </a>
 </p>
 
-Hotwire is an alternative approach to building modern web applications without using much JavaScript by sending HTML instead of JSON over the wire through of WebSocket (which consists of ActionCable, Channels and Streaming Data). [link hotwire](https://hotwired.dev?target=_blank)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Web
 
@@ -27,12 +28,13 @@ Hotwire is an alternative approach to building modern web applications without u
 <a href="#" target="_blank">Acessar Link</a>
 
 ## Screenshot
-![](https://github.com/tiagoleal/hotwire-rails7/tree/master/app/assets/images/hotwire.gif)
+![](https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/ruby.png)
 
 ## Market List
 Development of a market list using Ruby on Rails 7, Ruby 3, hotwire and Stimulus Js
 Manage your produts
-## Stack the Project (TODO: available gems)
+
+## Stack the Project
 
 - **Ruby On Rails**
 - **Redis**
@@ -43,18 +45,19 @@ Manage your produts
 - **StimulusJS**
 - **WebSocket**
 - **Action Cable**
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Populate data of access
+Run seed
 
-### Prerequisites
+## Index
 
-You must have installed on your machine:
+- [Requirements](#requirements)
+- [First steps](#first-steps)
+- [Authors](#authors)
+- [Tests](#tests)
+- [License](#license)
 
-- Docker
-- Docker Compose
-
-### Installing
+### Requirements
 
 First step is to install the docker service:
 
@@ -64,11 +67,13 @@ $ sudo apt-get update
 $ sudo apt-get install docker-ce
 $ sudo apt install docker-compose
 
-# Fedora, centos
+# Fedora
 $ sudo dnf update -y
 $ sudo dnf install docker-ce
 $ sudo dnf -y install docker-compose
 ```
+
+## Tests
 
 For test if the service was installed with succeed, you can run the command for to check de version of docker:
 
@@ -76,12 +81,22 @@ For test if the service was installed with succeed, you can run the command for 
 $ docker --version
 #Must be have the docker version: Docker version 18.06.0-ce
 $ docker-compose --version
-#Must be have the docker-compose version: docker-compose version 1.22.0
+#Must
+
+
+You must have installed on your machine:
+
+- Docker
+- Docker Compose
+```
 
 ## First steps
+```
 
 Follow the instructions to have a project present and able to run it locally.
+
 After copying the repository to your machine, go to the project's root site and:
+
 
 1.  Construct the container
 
@@ -89,32 +104,34 @@ After copying the repository to your machine, go to the project's root site and:
 docker-compose build
 ```
 
-2.  Run the project
+2.  Create of Database
 
 ```
-docker-compose up - d
-```
-
-## Running the tests
-
-To run the tests, you must run the docker container through the command:
+docker-compose run --rm website bundle exec rails db:create db:migrate
 
 ```
-docker-compose run --rm app bundle exec rspec
-```
+
+3.  up the project
 
 ```
-## Tests
+docker-compose up
+```
 
-For to do the tests it is necessary in docker container running:
+4. Without turning off the server, open a new window and run the migrations
 
-Test using Rspec:
+```
+docker-compose run --rm website bundle exec rails db:migrate if necessary populate database
+
+OBS. If the server does not create the pid file. due to gitignore
+it is necessary to create manually.
+mkdir tmp/pids
+Error bundle assets or webpacker run
+docker-compose run --rm app bundle exec rails webpacker:install
 
 **Model**
 
 Category
 docker-compose run --rm website bundle exec rspec spec/models/category_spec.rb
-
 
 Product
 docker-compose run --rm website bundle exec rspec spec/models/product_spec.rb
@@ -122,20 +139,21 @@ docker-compose run --rm website bundle exec rspec spec/models/product_spec.rb
 Order
 docker-compose run --rm website bundle exec rspec spec/models/order_spec.rb
 
-
 OrderProduct
 docker-compose run --rm website bundle exec rspec spec/models/order_product_spec.rb
 
 User
 docker-compose run --rm website bundle exec rspec spec/models/user_spec.rb
+
 ## Authors
 
 Project created by the following developers
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/5727529?s=460&v=4" width="100px;"/><br /><sub><b>Tiago Leal</b></sub>](https://github.com/tiagoleal)<br /> |
-[<img src="https://avatars.githubusercontent.com/u/7293590?v=4" width="100px;"/><br /><sub><b>Jefferson Maran</b></sub>](https://github.com/jeffmaran)<br /> | [<img src="https://avatars.githubusercontent.com/u/1753070?v=4" width="100px;"/><br /><sub><b>Thiago Cardoso</b></sub>](https://github.com/Thiago-Cardoso)<br /> |
+| [<img src="https://avatars.githubusercontent.com/u/1753070?v=4" width="100px;"/><br /><sub><b>Thiago Cardoso</b></sub>](https://github.com/Thiago-Cardoso)<br /> | [<img src="https://avatars1.githubusercontent.com/u/5727529?s=460&v=4" width="100px;"/><br /><sub><b>Tiago Leal</b></sub>](https://github.com/tiagoleal)<br /> | [<img src="https://avatars.githubusercontent.com/u/7293590?v=4" width="100px;"/><br /><sub><b>Jefferson Maran</b></sub>](https://github.com/jeffmaran)<br /> |
 | :---: | :---: | :---: |
+
 ## License
 
 This project is licensed under a Apache license 2.0 - see file [LICENSE](LICENSE) for more details
