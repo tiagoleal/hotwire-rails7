@@ -25,7 +25,7 @@
 
 ## Modelagem BD
 
-<a href="#" target="_blank">Acessar Link</a>
+<a href="https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/database.png" target="_blank">Acessar Link</a>
 
 ## Screenshot
 ![](https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/hotwire.gif)
