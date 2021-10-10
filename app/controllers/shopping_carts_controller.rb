@@ -29,7 +29,7 @@ class ShoppingCartsController < ApplicationController
       else
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end  
+    end
   end
 
   def destroy
@@ -75,7 +75,7 @@ class ShoppingCartsController < ApplicationController
 
   def order_list
     @orders ||= Order.find_by(user_id: current_user.id, status: 'waiting')
-    @orders.total = @orders.order_products.collect { |order_prod| order_prod.valid? ? order_prod.unit_price * order_prod.quantity : 0}.sum unless @orders.nil? 
+    @orders.total = @orders.order_products.collect { |order_prod| order_prod.valid? ? order_prod.unit_price * order_prod.quantity : 0}.sum unless @orders.nil?
   end
 
   def order_product_exist?
@@ -89,5 +89,4 @@ class ShoppingCartsController < ApplicationController
     end
     format.json { render :show, status: :ok, location: @orders }
   end
-  
 end
