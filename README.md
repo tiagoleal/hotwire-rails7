@@ -29,7 +29,7 @@
 
 ## Presentation Latinoware - 2022
 
-<a href="https://www.youtube.com/watch?v=IRHX0t6H-30" target="_blank">Link</a>
+<a href="https://www.youtube.com/watch?v=66-y9vsFLS4" target="_blank">Link</a>
 
 ## Screenshot
 ![](https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/hotwire.gif)
