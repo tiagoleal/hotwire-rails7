@@ -21,11 +21,15 @@
 
 ## Web
 
-<a href="https://market-list-hotwire.herokuapp.com" target="_blank">Acessar projeto</a>
+<a href="https://market-list-hotwire.herokuapp.com" target="_blank">Link project</a>
 
 ## Modelagem BD
 
-<a href="https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/database.png" target="_blank">Acessar Link</a>
+<a href="https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/database.png" target="_blank">Link</a>
+
+## Presentation Latinoware - 2022
+
+Link: https://www.youtube.com/watch?v=IRHX0t6H-30
 
 ## Screenshot
 ![](https://github.com/tiagoleal/hotwire-rails7/blob/master/app/assets/images/hotwire.gif)
