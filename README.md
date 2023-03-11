@@ -34,6 +34,9 @@
 Development of a market list using Ruby on Rails 7, Ruby 3, hotwire and Stimulus Js
 - Manage your products
 
+## Frontend
+https://github.com/Thiago-Cardoso/ecommerce-frontend
+
 ## Stack the Project
 
 - **Ruby On Rails**
